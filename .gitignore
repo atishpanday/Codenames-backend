@@ -2,4 +2,4 @@
 *.pkl
 myenv/
 __pycache__/
-/embeddings/__pycache__
+/embedding/__pycache__
