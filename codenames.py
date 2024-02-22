@@ -31,7 +31,6 @@ def load_document_frequencies():
     """
     Sets up a dictionary from words to their document frequency
     """
-    start = time.time()
     if os.path.exists("./data/word_to_df.pkl"):
         with open("./data/word_to_df.pkl", "rb") as f:
             word_to_df = pickle.load(f)
@@ -41,10 +40,6 @@ def load_document_frequencies():
         dct = Dictionary(dataset)
         id_to_doc_freqs = dct.dfs
         word_to_df = {dct[id]: id_to_doc_freqs[id] for id in id_to_doc_freqs}
-
-    end = time.time()
-
-    print(f"load doc freq: {end - start}")
 
     return word_to_df
 
@@ -99,7 +94,6 @@ def generate_board_words(first="red"):
 
 
 def get_clue(player_words, other_words, n):
-    start = time.time()
     word_to_df = load_document_frequencies()
     weighted_nn = dict()
     words = player_words + other_words
@@ -132,10 +126,6 @@ def get_clue(player_words, other_words, n):
 
         count += 1
 
-    end = time.time()
-
-    print(f"get clue {end - start}")
-
     return best_scores, best_clues, best_board_words_for_clue
 
 
@@ -154,8 +144,6 @@ def is_valid_clue(words, clue):
 
 
 def get_highest_clue(chosen_words, other_words, word_to_df, weighted_nn):
-
-    start = time.time()
 
     words = list(chosen_words) + list(other_words)
 
@@ -205,9 +193,6 @@ def get_highest_clue(chosen_words, other_words, word_to_df, weighted_nn):
             highest_score = score
         elif score == highest_score:
             highest_scoring_clues.append(clue)
-
-    end = time.time()
-    print(f"get_highest_clue {end - start}")
 
     return highest_scoring_clues, highest_score
 
