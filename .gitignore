@@ -3,3 +3,4 @@
 myenv/
 __pycache__/
 embedding/__pycache__/
+data/word_to_dict2vec_embeddings
