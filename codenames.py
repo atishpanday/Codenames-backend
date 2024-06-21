@@ -15,10 +15,10 @@ from nltk.stem import PorterStemmer
 from embedding.fasttext import FastText
 
 # stopwords
-from stopwords import stopwords
+from utils.stopwords import stopwords
 
 # heuristic score
-from utils import get_dict2vec_score
+from utils.utils import get_dict2vec_score
 
 import time
 
@@ -31,8 +31,8 @@ def load_document_frequencies():
     """
     Sets up a dictionary from words to their document frequency
     """
-    if os.path.exists("./data/word_to_df.pkl"):
-        with open("./data/word_to_df.pkl", "rb") as f:
+    if os.path.exists("./models/word_to_df.pkl"):
+        with open("./models/word_to_df.pkl", "rb") as f:
             word_to_df = pickle.load(f)
 
     else:
@@ -47,7 +47,7 @@ def load_document_frequencies():
 def generate_board_words(first="red"):
     idx_to_word = dict()
 
-    with open("./data/codewords.txt") as file:
+    with open("./utils/codewords.txt") as file:
         for i, line in enumerate(file):
             word = line.strip().lower()
             idx_to_word[i] = word
@@ -199,10 +199,10 @@ def get_highest_clue(chosen_words, other_words, word_to_df, weighted_nn):
 
 def generate_game_clues(player_words, other_words):
 
-    if len(player_words) <= 3:
+    if len(player_words) < 3:
         num_intended_words = len(player_words)
     else:
-        num_intended_words = random.choice([1, 2, 3])
+        num_intended_words = random.choice([1, 2])
 
     best_scores, best_clues, best_board_words_for_clue = get_clue(
         player_words, other_words, num_intended_words

@@ -9,7 +9,7 @@ class FastText(object):
         self.configuration = configuration
 
         self.fasttext_model = KeyedVectors.load_word2vec_format(
-            "./data/fasttext-wiki-news-300d-1M-subword.vec.gz"
+            "./models/fasttext-wiki-news-300d-1M-subword.vec.gz"
         )
 
     """

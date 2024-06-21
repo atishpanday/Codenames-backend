@@ -29,3 +29,7 @@ def get_clue():
             else:
                 other_words.append(data["word"])
     return generate_game_clues(player_words, other_words)
+
+
+if __name__ == "__main__":
+    app.run()
