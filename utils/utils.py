@@ -14,9 +14,9 @@ def get_dict2vec_score(chosen_words, potential_clue, other_words):
     global word_to_dict2vec_embeddings
     if word_to_dict2vec_embeddings == None:
         try:
-            input_file = open("./data/word_to_dict2vec_embeddings", "rb")
+            input_file = open("./models/word_to_dict2vec_embeddings", "rb")
         except IOError:
-            print("Error: data/word_to_dict2vec_embeddings does not exist.")
+            print("Error: models/word_to_dict2vec_embeddings does not exist.")
             return 0.0
         word_to_dict2vec_embeddings = pickle.load(input_file)
 
@@ -61,9 +61,9 @@ def get_dict2vec_dist(word1, word2):
     if word_to_dict2vec_embeddings == None:
         print("reloading embedding")
         try:
-            input_file = open("./data/word_to_dict2vec_embeddings", "rb")
+            input_file = open("./models/word_to_dict2vec_embeddings", "rb")
         except IOError:
-            print("Error: data/word_to_dict2vec_embeddings does not exist.")
+            print("Error: models/word_to_dict2vec_embeddings does not exist.")
 
         word_to_dict2vec_embeddings = pickle.load(input_file)
 

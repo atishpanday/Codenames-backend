@@ -4,3 +4,5 @@ myenv/
 __pycache__/
 embedding/__pycache__/
 models/word_to_dict2vec_embeddings
+*.zip
+package/
